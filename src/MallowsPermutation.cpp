@@ -4,7 +4,7 @@
 
 #include <algorithm>
 
-static void extend_if_needed(size_t& max, size_t new_size, std::deque<size_t>& vec) {
+static void extendIfNeeded(size_t& max, size_t new_size, std::deque<size_t>& vec) {
   if (new_size >= vec.size()) {
     auto const missing = new_size - vec.size() + 1;
     for (size_t i = 0; i != missing; ++i) {
@@ -34,11 +34,11 @@ std::deque<size_t> MallowsPermutation::generateImplementation(double q, size_t l
   std::deque<size_t> result(length);
   rndm::RandomGenerator generator;
   for (size_t i = 0; i != length; ++i) {
-    const size_t k = rndm::truncated_geometric(1.0 - q, length - result.size() - 1, generator);
+    const size_t k = rndm::truncatedGeometric(1.0 - q, length - result.size() - 1, generator);
     // We select the kth smallest number not yet selected, but we do not want to store the entire vector of unselected
     // numbers because k is typically small. So we store only a small part of this vector and extend it when k is so
     // that it is necessary
-    extend_if_needed(max, k, unselected);
+    extendIfNeeded(max, k, unselected);
     result[i] = unselected[k];
     unselected.erase(std::next(unselected.begin(), k));
   }

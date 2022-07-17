@@ -19,8 +19,8 @@ class RandomGenerator {
   RandomGenerator() = default;
   explicit RandomGenerator(size_t seed);
 
-  UniformZeroOne& uniform_zero_one();
-  UniformInteger& uniform_integer();
+  UniformZeroOne& uniformZeroOne();
+  UniformInteger& uniformInteger();
 };
 
 }  // namespace rndm
